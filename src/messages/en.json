@@ -1,0 +1,25 @@
+{
+  "home": {
+    "title": "London Transfers"
+  },
+
+  "header": {
+    "services": "Services",
+    "fleet": "Fleet",
+    "about": "About",
+    "contacts": "Contacts",
+    "book": "Book a transfer"
+  },
+
+  "cta": {
+    "title": "Leave a request — we will contact you to confirm the details",
+    "button": "Book a transfer",
+    "reply": "We reply during business hours"
+  },
+
+  "footer": {
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms of Use"
+  }
+}
