@@ -1,26 +1,24 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --font-cormorant: var(--font-cormorant), serif;
-  --font-jost: var(--font-jost), sans-serif;
-}
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  body {
+    font-family: var(--font-jost), sans-serif;
+    background: #07070c;
+  }
 
-body {
-  font-family: var(--font-jost);
-  background: #07070c;
-  color: #1a1a1a;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-cormorant);
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cormorant), serif;
+  }
 }

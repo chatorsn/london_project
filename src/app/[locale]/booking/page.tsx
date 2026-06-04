@@ -41,56 +41,14 @@ export default function BookingPage() {
 
   if (isSubmitted) {
     return (
-      <div style={{
-        minHeight: "100vh",
-        background: "#07070c",
-        fontFamily: "var(--font-jost), sans-serif",
-      }}>
-        <div style={{
-          position: "relative",
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "48px",
-        }}>
-          <div style={{
-            textAlign: "center",
-            maxWidth: 560,
-            margin: "0 auto",
-          }}>
-            <div style={{ fontSize: "64px", marginBottom: "24px" }}>✅</div>
-            <h2 style={{
-              fontFamily: "var(--font-cormorant), serif",
-              fontSize: "42px",
-              fontWeight: 300,
-              color: "rgba(225,232,245,0.9)",
-              marginBottom: "16px",
-            }}>
-              {t("success.title")}
-            </h2>
-            <p style={{
-              fontSize: "14px",
-              color: "rgba(170,185,210,0.65)",
-              lineHeight: 1.8,
-            }}>
-              {t("success.text")}
-            </p>
-            <Link href={`/${locale}`} style={{
-              display: "inline-block",
-              marginTop: "32px",
-              fontSize: "10px",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(210,222,238,0.9)",
-              border: "0.5px solid rgba(175,200,228,0.35)",
-              padding: "14px 32px",
-              background: "rgba(255,255,255,0.03)",
-              textDecoration: "none",
-            }}>
-              {t("backToHome")}
-            </Link>
-          </div>
+      <div className="min-h-screen bg-[#07070c] font-jost flex items-center justify-center p-6">
+        <div className="text-center max-w-[560px] mx-auto">
+          <div className="text-6xl mb-6">✅</div>
+          <h2 className="font-cormorant text-4xl md:text-5xl font-light text-white mb-4">{t("success.title")}</h2>
+          <p className="text-sm text-white/60 leading-relaxed">{t("success.text")}</p>
+          <Link href={`/${locale}`} className="inline-block mt-8 text-[10px] tracking-[0.25em] uppercase text-white border border-white/35 py-3 px-8 bg-transparent no-underline">
+            {t("backToHome")}
+          </Link>
         </div>
       </div>
     );
@@ -99,183 +57,127 @@ export default function BookingPage() {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div style={{ background: "#07070c", minHeight: "100vh", fontFamily: "var(--font-jost), sans-serif" }}>
-      <header style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "24px 48px",
-        background: "rgba(7,7,12,0.95)",
-        backdropFilter: "blur(10px)",
-      }}>
-        <Link href={`/${locale}`} style={{
-          fontWeight: 200,
-          fontSize: "10px",
-          letterSpacing: "0.3em",
-          color: "rgba(210,218,230,0.7)",
-          textTransform: "uppercase",
-          textDecoration: "none",
-        }}>
+    <div className="bg-[#07070c] min-h-screen font-jost">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-12 py-4 md:py-6 bg-black/60 backdrop-blur-md">
+        <Link href={`/${locale}`} className="text-white text-[11px] md:text-[13px] tracking-[0.25em] uppercase font-medium no-underline">
           London Route<br />Transfers
         </Link>
-        <Link href={`/${locale}`} style={{
-          fontSize: "9.5px",
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
-          color: "rgba(200,212,228,0.8)",
-          border: "0.5px solid rgba(175,195,220,0.28)",
-          padding: "9px 20px",
-          background: "transparent",
-          textDecoration: "none",
-        }}>
+        <Link href={`/${locale}`} className="text-white/80 text-[10px] md:text-[11px] tracking-[0.22em] uppercase border border-white/30 py-2 px-5 no-underline">
           {t("back")}
         </Link>
       </header>
 
-      <main style={{ maxWidth: 1200, margin: "0 auto", padding: "140px 48px 100px" }}>
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <p style={{
-            fontSize: "9px",
-            letterSpacing: "0.38em",
-            textTransform: "uppercase",
-            color: "rgba(180,195,220,0.5)",
-            marginBottom: 20,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 16,
-          }}>
-            <span style={{ display: "inline-block", width: 32, height: "0.5px", background: "rgba(180,195,220,0.4)" }} />
-            Booking
-            <span style={{ display: "inline-block", width: 32, height: "0.5px", background: "rgba(180,195,220,0.4)" }} />
-          </p>
-          <h1 style={{
-            fontFamily: "var(--font-cormorant), serif",
-            fontWeight: 300,
-            fontSize: "clamp(42px, 6vw, 72px)",
-            color: "rgba(225,232,245,0.92)",
-            lineHeight: 1.1,
-            marginBottom: 16,
-          }}>
-            {t("title")}
-          </h1>
-          <p style={{
-            fontSize: "12px",
-            color: "rgba(170,185,210,0.65)",
-            maxWidth: 480,
-            margin: "0 auto",
-          }}>
-            {t("subtitle")}
-          </p>
-        </div>
+      <main className="pt-24 md:pt-36 pb-16 md:pb-24 px-4 md:px-12">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-8 md:mb-16">
+            <p className="text-[9px] md:text-[10px] tracking-[0.38em] uppercase text-white/50 mb-4 flex items-center justify-center gap-4">
+              <span className="inline-block w-6 md:w-8 h-px bg-white/30" />
+              Booking
+              <span className="inline-block w-6 md:w-8 h-px bg-white/30" />
+            </p>
+            <h1 className="font-cormorant font-light text-4xl md:text-6xl lg:text-7xl text-white/90 mb-4">{t("title")}</h1>
+            <p className="text-xs md:text-sm text-white/50 max-w-md mx-auto">{t("subtitle")}</p>
+          </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} style={{
-          background: "rgba(15,15,25,0.6)",
-          backdropFilter: "blur(10px)",
-          border: "0.5px solid rgba(200,215,235,0.12)",
-          borderRadius: "2px",
-          padding: "48px 56px",
-        }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "32px", marginBottom: "32px" }}>
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.fullName")} *</label>
-              <input {...register("fullName")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.fullName && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.fullName.message as any)}</p>}
-            </div>
-
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.company")}</label>
-              <input {...register("company")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-            </div>
-
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.phone")} *</label>
-              <input {...register("phone")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.phone && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.phone.message as any)}</p>}
-            </div>
-
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.email")} *</label>
-              <input type="email" {...register("email")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.email && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.email.message as any)}</p>}
-            </div>
-
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.serviceType")} *</label>
-              <select {...register("serviceType")} style={{ width: "100%", background: "rgba(30,30,45,0.9)", border: "0.5px solid rgba(200,215,235,0.3)", padding: "12px 16px", color: "rgba(225,232,245,0.9)", fontSize: "13px", outline: "none", cursor: "pointer" }}>
-                <option value="" style={{ background: "#1a1a2e" }}>{t("form.selectService")}</option>
-                <option value="airport" style={{ background: "#1a1a2e" }}>{t("form.airport")}</option>
-                <option value="corporate" style={{ background: "#1a1a2e" }}>{t("form.corporate")}</option>
-                <option value="group" style={{ background: "#1a1a2e" }}>{t("form.group")}</option>
-                <option value="private" style={{ background: "#1a1a2e" }}>{t("form.private")}</option>
-              </select>
-              {errors.serviceType && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.serviceType.message as any)}</p>}
-            </div>
-
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.passengers")} *</label>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <button type="button" onClick={() => { const input = document.querySelector('input[name="passengers"]') as HTMLInputElement; if (input) { input.value = String(Math.max(1, (parseInt(input.value) || 1) - 1)); input.dispatchEvent(new Event('change')); } }} style={{ background: "rgba(255,255,255,0.05)", border: "0.5px solid rgba(200,215,235,0.3)", padding: "8px 16px", color: "rgba(225,232,245,0.9)", cursor: "pointer", fontSize: "16px" }}>−</button>
-                <input type="number" {...register("passengers", { valueAsNumber: true })} style={{ width: "80px", textAlign: "center", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 8px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-                <button type="button" onClick={() => { const input = document.querySelector('input[name="passengers"]') as HTMLInputElement; if (input) { input.value = String(Math.min(20, (parseInt(input.value) || 1) + 1)); input.dispatchEvent(new Event('change')); } }} style={{ background: "rgba(255,255,255,0.05)", border: "0.5px solid rgba(200,215,235,0.3)", padding: "8px 16px", color: "rgba(225,232,245,0.9)", cursor: "pointer", fontSize: "16px" }}>+</button>
+          <form onSubmit={handleSubmit(onSubmit)} className="bg-white/5 backdrop-blur border border-white/10 rounded p-6 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.fullName")} *</label>
+                <input {...register("fullName")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.fullName && <p className="text-red-400 text-[10px] mt-1">{t(errors.fullName.message as any)}</p>}
               </div>
-              {errors.passengers && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.passengers.message as any)}</p>}
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.company")}</label>
+                <input {...register("company")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.phone")} *</label>
+                <input {...register("phone")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.phone && <p className="text-red-400 text-[10px] mt-1">{t(errors.phone.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.email")} *</label>
+                <input type="email" {...register("email")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.email && <p className="text-red-400 text-[10px] mt-1">{t(errors.email.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.serviceType")} *</label>
+                <select {...register("serviceType")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none">
+                  <option value="" className="bg-[#1a1a2e]">{t("form.selectService")}</option>
+                  <option value="airport" className="bg-[#1a1a2e]">{t("form.airport")}</option>
+                  <option value="corporate" className="bg-[#1a1a2e]">{t("form.corporate")}</option>
+                  <option value="group" className="bg-[#1a1a2e]">{t("form.group")}</option>
+                  <option value="private" className="bg-[#1a1a2e]">{t("form.private")}</option>
+                </select>
+                {errors.serviceType && <p className="text-red-400 text-[10px] mt-1">{t(errors.serviceType.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.passengers")} *</label>
+                <div className="flex items-center gap-3">
+                  <button type="button" onClick={() => { const input = document.querySelector('input[name="passengers"]') as HTMLInputElement; if (input) { input.value = String(Math.max(1, (parseInt(input.value) || 1) - 1)); input.dispatchEvent(new Event('change')); } }} className="bg-white/10 border border-white/20 px-4 py-2 text-white cursor-pointer">−</button>
+                  <input type="number" {...register("passengers", { valueAsNumber: true })} className="w-20 text-center bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                  <button type="button" onClick={() => { const input = document.querySelector('input[name="passengers"]') as HTMLInputElement; if (input) { input.value = String(Math.min(20, (parseInt(input.value) || 1) + 1)); input.dispatchEvent(new Event('change')); } }} className="bg-white/10 border border-white/20 px-4 py-2 text-white cursor-pointer">+</button>
+                </div>
+                {errors.passengers && <p className="text-red-400 text-[10px] mt-1">{t(errors.passengers.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.pickup")} *</label>
+                <input {...register("pickup")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.pickup && <p className="text-red-400 text-[10px] mt-1">{t(errors.pickup.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.destination")} *</label>
+                <input {...register("destination")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.destination && <p className="text-red-400 text-[10px] mt-1">{t(errors.destination.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.date")} *</label>
+                <input type="date" {...register("date")} min={today} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.date && <p className="text-red-400 text-[10px] mt-1">{t(errors.date.message as any)}</p>}
+              </div>
+
+              <div>
+                <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.time")} *</label>
+                <input type="time" {...register("time")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
+                {errors.time && <p className="text-red-400 text-[10px] mt-1">{t(errors.time.message as any)}</p>}
+              </div>
             </div>
 
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.pickup")} *</label>
-              <input {...register("pickup")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.pickup && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.pickup.message as any)}</p>}
+            <div className="mb-6">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" {...register("meetAndGreet")} className="w-4 h-4" />
+                <span className="text-xs text-white/60">{t("form.meetAndGreet")}</span>
+              </label>
             </div>
 
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.destination")} *</label>
-              <input {...register("destination")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.destination && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.destination.message as any)}</p>}
+            <div className="mb-6">
+              <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.notes")}</label>
+              <textarea {...register("notes")} rows={4} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none resize-vertical" />
             </div>
 
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.date")} *</label>
-              <input type="date" {...register("date")} min={today} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.date && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.date.message as any)}</p>}
+            <div className="mb-8">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" {...register("consent")} className="w-4 h-4 mt-0.5" />
+                <span className="text-[10px] text-white/50 leading-relaxed">{t("form.consent")}</span>
+              </label>
+              {errors.consent && <p className="text-red-400 text-[10px] mt-2">{t(errors.consent.message as any)}</p>}
             </div>
 
-            <div>
-              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.time")} *</label>
-              <input type="time" {...register("time")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
-              {errors.time && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.time.message as any)}</p>}
-            </div>
-          </div>
+            <button type="submit" disabled={isSubmitting} className="w-full bg-white/10 border border-white/30 py-4 text-white/90 text-[10px] md:text-[11px] tracking-[0.25em] uppercase font-medium cursor-pointer transition-all hover:bg-white/20 disabled:opacity-50">
+              {isSubmitting ? t("form.sending") : t("form.submit")}
+            </button>
 
-          <div style={{ marginBottom: 24 }}>
-            <label style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}>
-              <input type="checkbox" {...register("meetAndGreet")} style={{ width: 16, height: 16 }} />
-              <span style={{ fontSize: "11px", color: "rgba(170,185,210,0.7)", letterSpacing: "0.05em" }}>{t("form.meetAndGreet")}</span>
-            </label>
-          </div>
-
-          <div style={{ marginBottom: 24 }}>
-            <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.notes")}</label>
-            <textarea {...register("notes")} rows={4} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none", resize: "vertical" }} />
-          </div>
-
-          <div style={{ marginBottom: 32 }}>
-            <label style={{ display: "flex", alignItems: "flex-start", gap: 12, cursor: "pointer" }}>
-              <input type="checkbox" {...register("consent")} style={{ width: 16, height: 16, marginTop: 2 }} />
-              <span style={{ fontSize: "10px", color: "rgba(170,185,210,0.6)", lineHeight: 1.5 }}>{t("form.consent")}</span>
-            </label>
-            {errors.consent && <p style={{ color: "#c44", fontSize: "10px", marginTop: 8 }}>{t(errors.consent.message as any)}</p>}
-          </div>
-
-          <button type="submit" disabled={isSubmitting} style={{ width: "100%", background: "rgba(255,255,255,0.05)", border: "0.5px solid rgba(175,200,228,0.35)", padding: "16px", color: "rgba(210,222,238,0.9)", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", cursor: isSubmitting ? "not-allowed" : "pointer", transition: "all 0.3s" }} onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.background = "rgba(255,255,255,0.1)"; }} onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}>{isSubmitting ? t("form.sending") : t("form.submit")}</button>
-
-          <p style={{ fontSize: "9px", color: "rgba(150,168,200,0.4)", textAlign: "center", marginTop: 24, letterSpacing: "0.05em" }}>{t("form.footerNote")}</p>
-        </form>
+            <p className="text-[9px] text-white/30 text-center mt-6">{t("form.footerNote")}</p>
+          </form>
+        </div>
       </main>
     </div>
   );
