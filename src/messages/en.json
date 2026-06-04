@@ -5,12 +5,14 @@
   },
   "hero": {
     "badge": "Passenger transport · London",
-    "subtitle": "Airports, corporate and private travel",
+    "subtitle": "Airports, corporate\nand private travel",
     "button": "Book a transfer"
   },
   "header": {
     "services": "Services",
+    "fleet": "Fleet",
     "about": "About",
+    "contacts": "Contacts",
     "book": "Book transfer"
   },
   "services": {
@@ -63,8 +65,6 @@
   "booking": {
     "title": "Book a Transfer",
     "subtitle": "Fill out the form and we will contact you to confirm your trip",
-    "back": "Back",
-    "backToHome": "Back to Home",
     "form": {
       "fullName": "Full name",
       "company": "Company (optional)",
@@ -86,7 +86,9 @@
       "consent": "I consent to the processing of personal data in accordance with the Privacy Policy",
       "submit": "Submit request",
       "sending": "Sending...",
-      "footerNote": "We process personal data only for handling requests and organizing transport"
+      "footerNote": "We process personal data only for handling requests and organizing transport",
+      "back": "Back",
+      "backToHome": "Back to Home"
     },
     "success": {
       "title": "Request accepted!",
@@ -96,7 +98,8 @@
       "required": "This field is required",
       "email": "Please enter a valid email address",
       "passengers": "Number of passengers must be at least 1",
-      "consent": "You must consent to data processing"
+      "consent": "You must consent to data processing",
+      "pastDate": "Cannot book transfers for past dates"
     }
   },
   "manager": {
@@ -118,26 +121,5 @@
     "noBookings": "No bookings found",
     "total": "Total",
     "demoNote": "Demo data • Form submissions are not saved to this list"
-  },
-  "legal": {
-    "back": "← Back to Home",
-    "privacy": {
-      "title": "Privacy Policy",
-      "text1": "London Route Transfers collects personal information submitted through booking forms solely for the purpose of arranging transport services and communicating with customers.",
-      "text2": "We do not sell personal information and only share data where necessary to provide requested services.",
-      "text3": "For any privacy-related inquiries, please contact us at booking@example.test."
-    },
-    "cookies": {
-      "title": "Cookie Policy",
-      "text1": "This website may use cookies to improve functionality, security and user experience.",
-      "text2": "By continuing to use the website you consent to the use of cookies.",
-      "text3": "You can disable cookies in your browser settings at any time."
-    },
-    "terms": {
-      "title": "Terms of Use",
-      "text1": "By using this website, you agree to these Terms of Use.",
-      "text2": "All information provided on this website is for informational purposes only.",
-      "text3": "London Route Transfers reserves the right to modify these terms at any time."
-    }
   }
 }

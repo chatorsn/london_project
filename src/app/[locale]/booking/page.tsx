@@ -34,6 +34,7 @@ export default function BookingPage() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<BookingFormData>({
     defaultValues: {
       passengers: 1,
@@ -42,7 +43,18 @@ export default function BookingPage() {
     },
   });
 
+  const selectedDate = watch("date");
+
+  // Получаем минимальную дату (сегодня)
+  const today = new Date().toISOString().split("T")[0];
+
   const onSubmit = async (data: BookingFormData) => {
+    // Дополнительная проверка даты
+    if (data.date < today) {
+      alert(t("validation.pastDate"));
+      return;
+    }
+
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log("Booking data:", data);
@@ -484,6 +496,7 @@ export default function BookingPage() {
               <input
                 type="date"
                 {...register("date", { required: true })}
+                min={today}
                 style={{
                   width: "100%",
                   background: "rgba(255,255,255,0.03)",
@@ -495,6 +508,9 @@ export default function BookingPage() {
                 }}
               />
               {errors.date && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              {selectedDate && selectedDate < today && (
+                <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.pastDate")}</p>
+              )}
             </div>
 
             <div>
