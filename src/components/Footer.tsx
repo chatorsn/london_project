@@ -116,18 +116,10 @@ export default function Footer() {
               }}
             >
               {[
-                {
-                  label: t("privacy"),
-                  href: `/${locale}/privacy`,
-                },
-                {
-                  label: t("cookies"),
-                  href: `/${locale}/cookies`,
-                },
-                {
-                  label: t("terms"),
-                  href: `/${locale}/terms`,
-                },
+                { label: t("privacy"), href: `/${locale}/privacy` },
+                { label: t("cookies"), href: `/${locale}/cookies` },
+                { label: t("terms"), href: `/${locale}/terms` },
+                { label: t("managerLink"), href: `/${locale}/manager` },
               ].map((l) => (
                 <Link
                   key={l.label}

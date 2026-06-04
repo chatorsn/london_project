@@ -59,11 +59,14 @@
   "footer": {
     "privacy": "Privacy Policy",
     "cookies": "Cookies Policy",
-    "terms": "Terms of Use"
+    "terms": "Terms of Use",
+    "managerLink": "Manager"
   },
   "booking": {
     "title": "Book a Transfer",
     "subtitle": "Fill out the form and we will contact you to confirm your trip",
+    "back": "Back",
+    "backToHome": "Back to Home",
     "form": {
       "fullName": "Full name",
       "company": "Company (optional)",
@@ -97,5 +100,25 @@
       "passengers": "Number of passengers must be at least 1",
       "consent": "You must consent to data processing"
     }
+  },
+  "manager": {
+    "title": "Manager Dashboard",
+    "subtitle": "Booking Management System",
+    "back": "Back to Site",
+    "search": "Search by name or ID...",
+    "statusAll": "all",
+    "statusPending": "pending",
+    "statusConfirmed": "confirmed",
+    "statusCompleted": "completed",
+    "tableId": "ID",
+    "tableCustomer": "Customer",
+    "tableService": "Service",
+    "tableRoute": "Route",
+    "tableDateTime": "Date/Time",
+    "tablePassengers": "Pass.",
+    "tableStatus": "Status",
+    "noBookings": "No bookings found",
+    "total": "Total",
+    "demoNote": "Demo data • Form submissions are not saved to this list"
   }
 }
