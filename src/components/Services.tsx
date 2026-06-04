@@ -112,4 +112,4 @@ export default function Services() {
       </div>
     </section>
   );
-}
+}// Уже есть CSS transition: "padding-left 0.3s" - это хорошо

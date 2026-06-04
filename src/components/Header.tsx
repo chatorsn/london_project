@@ -11,6 +11,13 @@ export default function Header() {
   const locale = (params?.locale as string) ?? "en";
   const otherLocale = locale === "en" ? "ru" : "en";
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header style={{
       position: "fixed",
@@ -44,27 +51,38 @@ export default function Header() {
         gap: 36,
         listStyle: "none",
       }}>
-        {[
-          { label: t("services"), href: `/${locale}/#services` },
-          { label: t("fleet"), href: `/${locale}/#fleet` },
-          { label: t("about"), href: `/${locale}/#about` },
-          { label: t("contacts"), href: `/${locale}/#contacts` },
-        ].map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.2em",
-              color: "rgba(175,190,210,0.55)",
-              textDecoration: "none",
-              textTransform: "uppercase",
-              fontWeight: 300,
-            }}
-          >
-            {item.label}
-          </Link>
-        ))}
+        <button
+          onClick={() => scrollToSection("services")}
+          style={{
+            fontSize: "10px",
+            letterSpacing: "0.2em",
+            color: "rgba(175,190,210,0.55)",
+            textDecoration: "none",
+            textTransform: "uppercase",
+            fontWeight: 300,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          {t("services")}
+        </button>
+        <button
+          onClick={() => scrollToSection("about")}
+          style={{
+            fontSize: "10px",
+            letterSpacing: "0.2em",
+            color: "rgba(175,190,210,0.55)",
+            textDecoration: "none",
+            textTransform: "uppercase",
+            fontWeight: 300,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          {t("about")}
+        </button>
       </nav>
 
       <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
