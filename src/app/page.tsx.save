@@ -1,4 +1,0 @@
-mu
-xexport default function HomePage() {
-  return <h1>London Transfers</h1>;
-}

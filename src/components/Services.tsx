@@ -1,33 +1,17 @@
 "use client";
 
-const services = [
-  {
-    number: "01",
-    title: "Airport Transfers",
-    sub: "Heathrow · Gatwick · Stansted · Luton · City",
-    desc: "Meet & greet, flight tracking, luggage assistance.",
-  },
-  {
-    number: "02",
-    title: "Corporate Travel",
-    sub: "Business trips & regular routes",
-    desc: "Transport for employees, clients and corporate events.",
-  },
-  {
-    number: "03",
-    title: "Group Transport",
-    sub: "Minibuses & coaches",
-    desc: "Schools, tourists, corporate groups of any size.",
-  },
-  {
-    number: "04",
-    title: "Private Journeys",
-    sub: "Weddings · Events · City travel",
-    desc: "Premium and business class vehicles on demand.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function Services() {
+  const t = useTranslations("services");
+
+  const services = [
+    { number: "01", titleKey: "airport.title", subKey: "airport.sub", descKey: "airport.desc" },
+    { number: "02", titleKey: "corporate.title", subKey: "corporate.sub", descKey: "corporate.desc" },
+    { number: "03", titleKey: "group.title", subKey: "group.sub", descKey: "group.desc" },
+    { number: "04", titleKey: "private.title", subKey: "private.sub", descKey: "private.desc" },
+  ];
+
   return (
     <section id="services" style={{
       background: "#09090e",
@@ -48,7 +32,7 @@ export default function Services() {
           gap: 16,
         }}>
           <span style={{ display: "inline-block", width: 32, height: "0.5px", background: "rgba(180,195,220,0.4)" }} />
-          Services
+          {t("sectionLabel")}
         </p>
 
         <div>
@@ -98,7 +82,7 @@ export default function Services() {
                     marginBottom: 10,
                   }}
                 >
-                  {s.title}
+                  {t(s.titleKey)}
                 </h3>
                 <p style={{
                   fontSize: "10px",
@@ -107,7 +91,7 @@ export default function Services() {
                   fontWeight: 300,
                   textTransform: "uppercase",
                 }}>
-                  {s.sub}
+                  {t(s.subKey)}
                 </p>
               </div>
 
@@ -119,7 +103,7 @@ export default function Services() {
                 letterSpacing: "0.04em",
                 textAlign: "right",
               }}>
-                {s.desc}
+                {t(s.descKey)}
               </p>
             </div>
           ))}

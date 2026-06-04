@@ -1,12 +1,16 @@
 "use client";
 
-const stats = [
-  { value: "15+", label: "Years on the market" },
-  { value: "5", label: "London airports" },
-  { value: "24/7", label: "Available" },
-];
+import { useTranslations } from "next-intl";
 
 export default function About() {
+  const t = useTranslations("about");
+
+  const stats = [
+    { value: "15+", labelKey: "years" },
+    { value: "5", labelKey: "airports" },
+    { value: "24/7", labelKey: "available" },
+  ];
+
   return (
     <section id="about" style={{
       background: "#07070c",
@@ -28,7 +32,7 @@ export default function About() {
             gap: 16,
           }}>
             <span style={{ display: "inline-block", width: 32, height: "0.5px", background: "rgba(180,195,220,0.4)" }} />
-            About
+            {t("sectionLabel")}
           </p>
 
           <h2 style={{
@@ -40,9 +44,9 @@ export default function About() {
             letterSpacing: "-0.01em",
             marginBottom: 40,
           }}>
-            Reliable operator<br />
-            of passenger transport<br />
-            <span style={{ color: "rgba(180,195,218,0.4)" }}>in London</span>
+            {t("title")}<br />
+            {t("subtitleLine1")}<br />
+            <span style={{ color: "rgba(180,195,218,0.4)" }}>{t("subtitleLine2")}</span>
           </h2>
 
           <p style={{
@@ -53,7 +57,7 @@ export default function About() {
             letterSpacing: "0.04em",
             marginBottom: 16,
           }}>
-            London Route Transfers organises passenger transport in London and beyond. We work with private clients, companies and groups.
+            {t("text1")}
           </p>
           <p style={{
             fontSize: "12px",
@@ -62,7 +66,7 @@ export default function About() {
             lineHeight: 2,
             letterSpacing: "0.04em",
           }}>
-            Every journey is managed as a controlled process — from receiving the request to completing the route.
+            {t("text2")}
           </p>
         </div>
 
@@ -94,7 +98,7 @@ export default function About() {
                 textTransform: "uppercase",
                 textAlign: "right",
               }}>
-                {s.label}
+                {t(`stats.${s.labelKey}`)}
               </span>
             </div>
           ))}

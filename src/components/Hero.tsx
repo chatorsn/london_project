@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "en";
+  const t = useTranslations("hero");
+
   return (
     <section style={{
       position: "relative",
@@ -51,7 +57,7 @@ export default function Hero() {
           fontWeight: 300,
         }}>
           <span style={{ display: "inline-block", width: 28, height: 0.5, background: "rgba(150,170,200,0.4)" }} />
-          Passenger transport · London
+          {t("badge")}
         </div>
 
         <h1 style={{
@@ -83,10 +89,10 @@ export default function Hero() {
             maxWidth: 240,
             margin: 0,
           }}>
-            Airports, corporate<br />and private travel
+            {t("subtitle")}
           </p>
 
-          <Link href="/booking" style={{
+          <Link href={`/${locale}/booking`} style={{
             display: "inline-flex",
             alignItems: "center",
             gap: 20,
@@ -102,7 +108,7 @@ export default function Hero() {
             fontWeight: 300,
             whiteSpace: "nowrap",
           }}>
-            Book a transfer
+            {t("button")}
             <span style={{ opacity: 0.45, fontSize: 16, fontWeight: 200 }}>→</span>
           </Link>
         </div>

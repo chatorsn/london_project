@@ -1,25 +1,101 @@
 {
-  "home": {
-    "title": "London Transfers"
+  "metadata": {
+    "title": "London Route Transfers - Professional Passenger Transport in London",
+    "description": "Airport transfers, corporate transport, group and private travel in London. Reliable service with professional drivers."
   },
-
+  "hero": {
+    "badge": "Passenger transport · London",
+    "subtitle": "Airports, corporate\nand private travel",
+    "button": "Book a transfer"
+  },
   "header": {
     "services": "Services",
     "fleet": "Fleet",
     "about": "About",
     "contacts": "Contacts",
-    "book": "Book a transfer"
+    "book": "Book transfer"
   },
-
+  "services": {
+    "sectionLabel": "Services",
+    "airport": {
+      "title": "Airport Transfers",
+      "sub": "Heathrow · Gatwick · Stansted · Luton · City",
+      "desc": "Meet & greet, flight tracking, luggage assistance."
+    },
+    "corporate": {
+      "title": "Corporate Travel",
+      "sub": "Business trips & regular routes",
+      "desc": "Transport for employees, clients and corporate events."
+    },
+    "group": {
+      "title": "Group Transport",
+      "sub": "Minibuses & coaches",
+      "desc": "Schools, tourists, corporate groups of any size."
+    },
+    "private": {
+      "title": "Private Journeys",
+      "sub": "Weddings · Events · City travel",
+      "desc": "Premium and business class vehicles on demand."
+    }
+  },
+  "about": {
+    "sectionLabel": "About",
+    "title": "Reliable operator",
+    "subtitleLine1": "of passenger transport",
+    "subtitleLine2": "in London",
+    "text1": "London Route Transfers organises passenger transport in London and beyond. We work with private clients, companies and groups.",
+    "text2": "Every journey is managed as a controlled process — from receiving the request to completing the route.",
+    "stats": {
+      "years": "Years on the market",
+      "airports": "London airports",
+      "available": "Available"
+    }
+  },
   "cta": {
-    "title": "Leave a request — we will contact you to confirm the details",
+    "title": "Request a callback — we will contact you to clarify the details",
     "button": "Book a transfer",
     "reply": "We reply during business hours"
   },
-
   "footer": {
     "privacy": "Privacy Policy",
-    "cookies": "Cookie Policy",
+    "cookies": "Cookies Policy",
     "terms": "Terms of Use"
+  },
+  "booking": {
+    "title": "Book a Transfer",
+    "subtitle": "Fill out the form and we will contact you to confirm your trip",
+    "form": {
+      "fullName": "Full name",
+      "company": "Company (optional)",
+      "phone": "Phone",
+      "email": "Email",
+      "serviceType": "Service type",
+      "selectService": "Select service type",
+      "airport": "Airport Transfer",
+      "corporate": "Corporate Transport",
+      "group": "Group Transport",
+      "private": "Private Journey",
+      "passengers": "Number of passengers",
+      "pickup": "Pickup address",
+      "destination": "Destination",
+      "date": "Date",
+      "time": "Time",
+      "meetAndGreet": "Meet & Greet required at airport",
+      "notes": "Additional information (baggage, special requirements)",
+      "consent": "I consent to the processing of personal data in accordance with the Privacy Policy",
+      "submit": "Submit request",
+      "sending": "Sending...",
+      "footerNote": "We process personal data only for handling requests and organizing transport"
+    },
+    "success": {
+      "title": "Request accepted!",
+      "text": "We will contact you during business hours to clarify the details of your trip."
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Please enter a valid email address",
+      "passengers": "Number of passengers must be at least 1",
+      "consent": "You must consent to data processing"
+    }
   }
 }
