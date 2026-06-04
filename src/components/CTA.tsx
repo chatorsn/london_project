@@ -10,62 +10,17 @@ export default function CTA() {
   const t = useTranslations("cta");
 
   return (
-    <section style={{
-      background: "#07070c",
-      padding: "120px 48px",
-      fontFamily: "var(--font-jost), sans-serif",
-      borderTop: "0.5px solid rgba(200,215,235,0.08)",
-    }}>
-      <div style={{
-        maxWidth: 1320,
-        margin: "0 auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: 48,
-      }}>
-        <h2 style={{
-          fontFamily: "var(--font-cormorant), serif",
-          fontWeight: 300,
-          fontSize: "clamp(36px, 4.5vw, 62px)",
-          color: "rgba(225,232,245,0.9)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.01em",
-          maxWidth: 560,
-        }}>
+    <section className="bg-[#07070c] py-[120px] px-12 font-jost border-t border-[rgba(200,215,235,0.08)]">
+      <div className="max-w-[1320px] mx-auto flex items-center justify-between gap-12">
+        <h2 className="font-cormorant font-light text-[clamp(36px,4.5vw,62px)] text-[rgba(225,232,245,0.9)] leading-[1.05] tracking-[-0.01em] max-w-[560px]">
           {t("title")}
         </h2>
-
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 20, flexShrink: 0 }}>
-          <Link href={`/${locale}/booking`} style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 20,
-            fontFamily: "var(--font-jost), sans-serif",
-            fontSize: "10px",
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            color: "rgba(210,222,238,0.9)",
-            border: "0.5px solid rgba(175,200,228,0.35)",
-            padding: "16px 36px 16px 32px",
-            background: "rgba(255,255,255,0.03)",
-            textDecoration: "none",
-            fontWeight: 300,
-            whiteSpace: "nowrap",
-          }}>
+        <div className="flex flex-col items-end gap-5 flex-shrink-0">
+          <Link href={`/${locale}/booking`} className="inline-flex items-center gap-5 font-jost text-[10px] tracking-[0.25em] uppercase text-[rgba(210,222,238,0.9)] border border-[rgba(175,200,228,0.35)] py-4 px-9 bg-[rgba(255,255,255,0.03)] no-underline font-light whitespace-nowrap transition-all duration-300 hover:bg-[rgba(255,255,255,0.1)]">
             {t("button")}
-            <span style={{ opacity: 0.45, fontSize: 18, fontWeight: 200 }}>→</span>
+            <span className="opacity-45 text-lg font-extralight">→</span>
           </Link>
-
-          <p style={{
-            fontSize: "10px",
-            fontWeight: 200,
-            color: "rgba(170,185,215,0.55)",
-            letterSpacing: "0.08em",
-            textAlign: "right",
-          }}>
-            {t("reply")}
-          </p>
+          <p className="text-[10px] font-extralight text-[rgba(170,185,215,0.55)] tracking-[0.08em] text-right">{t("reply")}</p>
         </div>
       </div>
     </section>

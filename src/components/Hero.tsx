@@ -10,106 +10,31 @@ export default function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section style={{
-      position: "relative",
-      width: "100%",
-      height: "100vh",
-      overflow: "hidden",
-      background: "#0d0f14",
-      fontFamily: "var(--font-jost), sans-serif",
-    }}>
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage: "url('/london-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        filter: "saturate(0.3) brightness(0.5) contrast(1.2)",
-      }} />
+    <section className="relative w-full h-screen overflow-hidden bg-[#0d0f14] font-jost">
+      <div className="absolute inset-0 bg-[url('/london-bg.jpg')] bg-cover bg-center saturate-30 brightness-50 contrast-120" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[rgba(6,7,12,0.92)] via-[rgba(6,7,12,0.3)] to-[rgba(6,7,12,0.5)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,7,12,0.75)] via-transparent to-transparent" />
 
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(to right, rgba(6,7,12,0.92) 0%, rgba(6,7,12,0.3) 60%, rgba(6,7,12,0.5) 100%)",
-      }} />
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(to top, rgba(6,7,12,0.75) 0%, transparent 50%)",
-      }} />
-
-      <div style={{
-        position: "absolute",
-        bottom: 64,
-        left: 48,
-        zIndex: 10,
-        maxWidth: 680,
-      }}>
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 14,
-          marginBottom: 20,
-          fontSize: "9.5px",
-          letterSpacing: "0.35em",
-          textTransform: "uppercase",
-          color: "rgba(150,170,200,0.55)",
-          fontWeight: 300,
-        }}>
-          <span style={{ display: "inline-block", width: 28, height: 0.5, background: "rgba(150,170,200,0.4)" }} />
+      <div className="absolute bottom-16 left-12 z-10 max-w-[680px]">
+        <div className="flex items-center gap-3.5 mb-5 text-[9.5px] tracking-[0.35em] uppercase text-[rgba(150,170,200,0.55)] font-light">
+          <span className="inline-block w-7 h-px bg-[rgba(150,170,200,0.4)]" />
           {t("badge")}
         </div>
 
-        <h1 style={{
-          fontFamily: "var(--font-cormorant), serif",
-          fontWeight: 300,
-          fontSize: "clamp(72px, 11vw, 118px)",
-          lineHeight: 0.9,
-          letterSpacing: "-0.01em",
-          color: "rgba(240,244,252,1)",
-          margin: 0,
-        }}>
+        <h1 className="font-cormorant font-light text-[clamp(72px,11vw,118px)] leading-[0.9] tracking-[-0.01em] text-[rgba(240,244,252,1)] m-0">
           LONDON<br />
           ROUTE<br />
-          <span style={{ color: "rgba(200,212,232,0.7)" }}>TRANSFERS</span>
+          <span className="text-[rgba(200,212,232,0.7)]">TRANSFERS</span>
         </h1>
 
-        <div style={{
-          display: "flex",
-          alignItems: "flex-end",
-          gap: 48,
-          marginTop: 32,
-        }}>
-          <p style={{
-            fontSize: "11.5px",
-            fontWeight: 200,
-            color: "rgba(175,190,215,0.85)",
-            letterSpacing: "0.06em",
-            lineHeight: 1.9,
-            maxWidth: 240,
-            margin: 0,
-          }}>
+        <div className="flex items-end gap-12 mt-8">
+          <p className="text-[11.5px] font-extralight text-[rgba(175,190,215,0.85)] tracking-[0.06em] leading-[1.9] max-w-[240px] m-0 whitespace-pre-line">
             {t("subtitle")}
           </p>
 
-          <Link href={`/${locale}/booking`} style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 20,
-            fontFamily: "var(--font-jost), sans-serif",
-            fontSize: "9.5px",
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: "rgba(210,222,238,0.9)",
-            border: "0.5px solid rgba(175,200,228,0.3)",
-            padding: "14px 32px 14px 28px",
-            background: "rgba(255,255,255,0.03)",
-            textDecoration: "none",
-            fontWeight: 300,
-            whiteSpace: "nowrap",
-          }}>
+          <Link href={`/${locale}/booking`} className="inline-flex items-center gap-5 font-jost text-[9.5px] tracking-[0.28em] uppercase text-[rgba(210,222,238,0.9)] border border-[rgba(175,200,228,0.3)] py-3.5 px-8 bg-[rgba(255,255,255,0.03)] no-underline font-light whitespace-nowrap">
             {t("button")}
-            <span style={{ opacity: 0.45, fontSize: 16, fontWeight: 200 }}>→</span>
+            <span className="opacity-45 text-base font-extralight">→</span>
           </Link>
         </div>
       </div>

@@ -2,25 +2,11 @@
 
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-
-type BookingFormData = {
-  fullName: string;
-  company: string;
-  phone: string;
-  email: string;
-  serviceType: string;
-  pickup: string;
-  destination: string;
-  date: string;
-  time: string;
-  passengers: number;
-  meetAndGreet: boolean;
-  notes: string;
-  consent: boolean;
-};
+import { bookingSchema, BookingFormData } from "@/lib/bookingSchema";
 
 export default function BookingPage() {
   const params = useParams();
@@ -34,8 +20,8 @@ export default function BookingPage() {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
   } = useForm<BookingFormData>({
+    resolver: zodResolver(bookingSchema),
     defaultValues: {
       passengers: 1,
       meetAndGreet: false,
@@ -43,18 +29,7 @@ export default function BookingPage() {
     },
   });
 
-  const selectedDate = watch("date");
-
-  // Получаем минимальную дату (сегодня)
-  const today = new Date().toISOString().split("T")[0];
-
   const onSubmit = async (data: BookingFormData) => {
-    // Дополнительная проверка даты
-    if (data.date < today) {
-      alert(t("validation.pastDate"));
-      return;
-    }
-
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log("Booking data:", data);
@@ -84,10 +59,7 @@ export default function BookingPage() {
             maxWidth: 560,
             margin: "0 auto",
           }}>
-            <div style={{
-              fontSize: "64px",
-              marginBottom: "24px",
-            }}>✅</div>
+            <div style={{ fontSize: "64px", marginBottom: "24px" }}>✅</div>
             <h2 style={{
               fontFamily: "var(--font-cormorant), serif",
               fontSize: "42px",
@@ -124,12 +96,10 @@ export default function BookingPage() {
     );
   }
 
+  const today = new Date().toISOString().split("T")[0];
+
   return (
-    <div style={{
-      background: "#07070c",
-      minHeight: "100vh",
-      fontFamily: "var(--font-jost), sans-serif",
-    }}>
+    <div style={{ background: "#07070c", minHeight: "100vh", fontFamily: "var(--font-jost), sans-serif" }}>
       <header style={{
         position: "fixed",
         top: 0,
@@ -167,11 +137,7 @@ export default function BookingPage() {
         </Link>
       </header>
 
-      <main style={{
-        maxWidth: 1200,
-        margin: "0 auto",
-        padding: "140px 48px 100px",
-      }}>
+      <main style={{ maxWidth: 1200, margin: "0 auto", padding: "140px 48px 100px" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <p style={{
             fontSize: "9px",
@@ -215,440 +181,100 @@ export default function BookingPage() {
           borderRadius: "2px",
           padding: "48px 56px",
         }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "32px",
-            marginBottom: "32px",
-          }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "32px", marginBottom: "32px" }}>
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.fullName")} *
-              </label>
-              <input
-                {...register("fullName", { required: true })}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.fullName && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.fullName")} *</label>
+              <input {...register("fullName")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.fullName && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.fullName.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.company")}
-              </label>
-              <input
-                {...register("company")}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.company")}</label>
+              <input {...register("company")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.phone")} *
-              </label>
-              <input
-                {...register("phone", { required: true })}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.phone && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.phone")} *</label>
+              <input {...register("phone")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.phone && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.phone.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.email")} *
-              </label>
-              <input
-                type="email"
-                {...register("email", { required: true, pattern: /^\S+@\S+$/ })}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.email && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.email")}</p>}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.email")} *</label>
+              <input type="email" {...register("email")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.email && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.email.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.serviceType")} *
-              </label>
-              <select
-                {...register("serviceType", { required: true })}
-                style={{
-                  width: "100%",
-                  background: "rgba(30,30,45,0.9)",
-                  border: "0.5px solid rgba(200,215,235,0.3)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.9)",
-                  fontSize: "13px",
-                  outline: "none",
-                  cursor: "pointer",
-                }}
-              >
-                <option value="" style={{ background: "#1a1a2e", color: "rgba(225,232,245,0.7)" }}>{t("form.selectService")}</option>
-                <option value="airport" style={{ background: "#1a1a2e", color: "rgba(225,232,245,0.9)" }}>{t("form.airport")}</option>
-                <option value="corporate" style={{ background: "#1a1a2e", color: "rgba(225,232,245,0.9)" }}>{t("form.corporate")}</option>
-                <option value="group" style={{ background: "#1a1a2e", color: "rgba(225,232,245,0.9)" }}>{t("form.group")}</option>
-                <option value="private" style={{ background: "#1a1a2e", color: "rgba(225,232,245,0.9)" }}>{t("form.private")}</option>
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.serviceType")} *</label>
+              <select {...register("serviceType")} style={{ width: "100%", background: "rgba(30,30,45,0.9)", border: "0.5px solid rgba(200,215,235,0.3)", padding: "12px 16px", color: "rgba(225,232,245,0.9)", fontSize: "13px", outline: "none", cursor: "pointer" }}>
+                <option value="" style={{ background: "#1a1a2e" }}>{t("form.selectService")}</option>
+                <option value="airport" style={{ background: "#1a1a2e" }}>{t("form.airport")}</option>
+                <option value="corporate" style={{ background: "#1a1a2e" }}>{t("form.corporate")}</option>
+                <option value="group" style={{ background: "#1a1a2e" }}>{t("form.group")}</option>
+                <option value="private" style={{ background: "#1a1a2e" }}>{t("form.private")}</option>
               </select>
-              {errors.serviceType && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              {errors.serviceType && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.serviceType.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.passengers")} *
-              </label>
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.passengers")} *</label>
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const input = document.querySelector('input[name="passengers"]') as HTMLInputElement;
-                    if (input) {
-                      const val = parseInt(input.value) || 1;
-                      input.value = String(Math.max(1, val - 1));
-                      input.dispatchEvent(new Event('change'));
-                    }
-                  }}
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "0.5px solid rgba(200,215,235,0.3)",
-                    padding: "8px 16px",
-                    color: "rgba(225,232,245,0.9)",
-                    cursor: "pointer",
-                    fontSize: "16px",
-                  }}
-                >
-                  −
-                </button>
-                <input
-                  type="number"
-                  {...register("passengers", { required: true, min: 1, valueAsNumber: true })}
-                  style={{
-                    width: "80px",
-                    textAlign: "center",
-                    background: "rgba(255,255,255,0.03)",
-                    border: "0.5px solid rgba(200,215,235,0.2)",
-                    padding: "12px 8px",
-                    color: "rgba(225,232,245,0.85)",
-                    fontSize: "13px",
-                    outline: "none",
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={() => {
-                    const input = document.querySelector('input[name="passengers"]') as HTMLInputElement;
-                    if (input) {
-                      const val = parseInt(input.value) || 1;
-                      input.value = String(Math.min(20, val + 1));
-                      input.dispatchEvent(new Event('change'));
-                    }
-                  }}
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "0.5px solid rgba(200,215,235,0.3)",
-                    padding: "8px 16px",
-                    color: "rgba(225,232,245,0.9)",
-                    cursor: "pointer",
-                    fontSize: "16px",
-                  }}
-                >
-                  +
-                </button>
+                <button type="button" onClick={() => { const input = document.querySelector('input[name="passengers"]') as HTMLInputElement; if (input) { input.value = String(Math.max(1, (parseInt(input.value) || 1) - 1)); input.dispatchEvent(new Event('change')); } }} style={{ background: "rgba(255,255,255,0.05)", border: "0.5px solid rgba(200,215,235,0.3)", padding: "8px 16px", color: "rgba(225,232,245,0.9)", cursor: "pointer", fontSize: "16px" }}>−</button>
+                <input type="number" {...register("passengers", { valueAsNumber: true })} style={{ width: "80px", textAlign: "center", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 8px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+                <button type="button" onClick={() => { const input = document.querySelector('input[name="passengers"]') as HTMLInputElement; if (input) { input.value = String(Math.min(20, (parseInt(input.value) || 1) + 1)); input.dispatchEvent(new Event('change')); } }} style={{ background: "rgba(255,255,255,0.05)", border: "0.5px solid rgba(200,215,235,0.3)", padding: "8px 16px", color: "rgba(225,232,245,0.9)", cursor: "pointer", fontSize: "16px" }}>+</button>
               </div>
-              {errors.passengers && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.passengers")}</p>}
+              {errors.passengers && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.passengers.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.pickup")} *
-              </label>
-              <input
-                {...register("pickup", { required: true })}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.pickup && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.pickup")} *</label>
+              <input {...register("pickup")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.pickup && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.pickup.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.destination")} *
-              </label>
-              <input
-                {...register("destination", { required: true })}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.destination && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.destination")} *</label>
+              <input {...register("destination")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.destination && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.destination.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.date")} *
-              </label>
-              <input
-                type="date"
-                {...register("date", { required: true })}
-                min={today}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.date && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
-              {selectedDate && selectedDate < today && (
-                <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.pastDate")}</p>
-              )}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.date")} *</label>
+              <input type="date" {...register("date")} min={today} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.date && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.date.message as any)}</p>}
             </div>
 
             <div>
-              <label style={{
-                display: "block",
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "rgba(170,185,210,0.5)",
-                marginBottom: 8,
-              }}>
-                {t("form.time")} *
-              </label>
-              <input
-                type="time"
-                {...register("time", { required: true })}
-                style={{
-                  width: "100%",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "0.5px solid rgba(200,215,235,0.2)",
-                  padding: "12px 16px",
-                  color: "rgba(225,232,245,0.85)",
-                  fontSize: "13px",
-                  outline: "none",
-                }}
-              />
-              {errors.time && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t("validation.required")}</p>}
+              <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.time")} *</label>
+              <input type="time" {...register("time")} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none" }} />
+              {errors.time && <p style={{ color: "#c44", fontSize: "10px", marginTop: 4 }}>{t(errors.time.message as any)}</p>}
             </div>
           </div>
 
           <div style={{ marginBottom: 24 }}>
-            <label style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              cursor: "pointer",
-            }}>
-              <input
-                type="checkbox"
-                {...register("meetAndGreet")}
-                style={{ width: 16, height: 16 }}
-              />
-              <span style={{
-                fontSize: "11px",
-                color: "rgba(170,185,210,0.7)",
-                letterSpacing: "0.05em",
-              }}>
-                {t("form.meetAndGreet")}
-              </span>
+            <label style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}>
+              <input type="checkbox" {...register("meetAndGreet")} style={{ width: 16, height: 16 }} />
+              <span style={{ fontSize: "11px", color: "rgba(170,185,210,0.7)", letterSpacing: "0.05em" }}>{t("form.meetAndGreet")}</span>
             </label>
           </div>
 
           <div style={{ marginBottom: 24 }}>
-            <label style={{
-              display: "block",
-              fontSize: "9px",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "rgba(170,185,210,0.5)",
-              marginBottom: 8,
-            }}>
-              {t("form.notes")}
-            </label>
-            <textarea
-              {...register("notes")}
-              rows={4}
-              style={{
-                width: "100%",
-                background: "rgba(255,255,255,0.03)",
-                border: "0.5px solid rgba(200,215,235,0.2)",
-                padding: "12px 16px",
-                color: "rgba(225,232,245,0.85)",
-                fontSize: "13px",
-                outline: "none",
-                resize: "vertical",
-              }}
-            />
+            <label style={{ display: "block", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(170,185,210,0.5)", marginBottom: 8 }}>{t("form.notes")}</label>
+            <textarea {...register("notes")} rows={4} style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: "0.5px solid rgba(200,215,235,0.2)", padding: "12px 16px", color: "rgba(225,232,245,0.85)", fontSize: "13px", outline: "none", resize: "vertical" }} />
           </div>
 
           <div style={{ marginBottom: 32 }}>
-            <label style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: 12,
-              cursor: "pointer",
-            }}>
-              <input
-                type="checkbox"
-                {...register("consent", { required: true })}
-                style={{ width: 16, height: 16, marginTop: 2 }}
-              />
-              <span style={{
-                fontSize: "10px",
-                color: "rgba(170,185,210,0.6)",
-                lineHeight: 1.5,
-              }}>
-                {t("form.consent")}
-              </span>
+            <label style={{ display: "flex", alignItems: "flex-start", gap: 12, cursor: "pointer" }}>
+              <input type="checkbox" {...register("consent")} style={{ width: 16, height: 16, marginTop: 2 }} />
+              <span style={{ fontSize: "10px", color: "rgba(170,185,210,0.6)", lineHeight: 1.5 }}>{t("form.consent")}</span>
             </label>
-            {errors.consent && <p style={{ color: "#c44", fontSize: "10px", marginTop: 8 }}>{t("validation.consent")}</p>}
+            {errors.consent && <p style={{ color: "#c44", fontSize: "10px", marginTop: 8 }}>{t(errors.consent.message as any)}</p>}
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            style={{
-              width: "100%",
-              background: "rgba(255,255,255,0.05)",
-              border: "0.5px solid rgba(175,200,228,0.35)",
-              padding: "16px",
-              color: "rgba(210,222,238,0.9)",
-              fontSize: "10px",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              cursor: isSubmitting ? "not-allowed" : "pointer",
-              transition: "all 0.3s",
-            }}
-            onMouseEnter={(e) => {
-              if (!isSubmitting) {
-                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-            }}
-          >
-            {isSubmitting ? t("form.sending") : t("form.submit")}
-          </button>
+          <button type="submit" disabled={isSubmitting} style={{ width: "100%", background: "rgba(255,255,255,0.05)", border: "0.5px solid rgba(175,200,228,0.35)", padding: "16px", color: "rgba(210,222,238,0.9)", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", cursor: isSubmitting ? "not-allowed" : "pointer", transition: "all 0.3s" }} onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.background = "rgba(255,255,255,0.1)"; }} onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}>{isSubmitting ? t("form.sending") : t("form.submit")}</button>
 
-          <p style={{
-            fontSize: "9px",
-            color: "rgba(150,168,200,0.4)",
-            textAlign: "center",
-            marginTop: 24,
-            letterSpacing: "0.05em",
-          }}>
-            {t("form.footerNote")}
-          </p>
+          <p style={{ fontSize: "9px", color: "rgba(150,168,200,0.4)", textAlign: "center", marginTop: 24, letterSpacing: "0.05em" }}>{t("form.footerNote")}</p>
         </form>
       </main>
     </div>
