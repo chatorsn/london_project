@@ -120,8 +120,9 @@
     "tablePassengers": "Pass.",
     "tableStatus": "Status",
     "noBookings": "No bookings found",
+    "demoNote": "Demo data • Form submissions are not saved to this list",
     "total": "Total",
-    "demoNote": "Demo data • Form submissions are not saved to this list"
+    "statusCancelled": "cancelled"
   },
   "whyChooseUs": {
     "title": "Why clients choose LONDON ROUTE TRANSFERS",
@@ -207,3 +208,4 @@
   }
   
 }
+  

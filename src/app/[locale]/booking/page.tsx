@@ -14,6 +14,7 @@ export default function BookingPage() {
   const t = useTranslations("booking");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -31,12 +32,31 @@ export default function BookingPage() {
 
   const onSubmit = async (data: BookingFormData) => {
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log("Booking data:", data);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setSubmitError(null);
+    
+    try {
+      const response = await fetch("http://localhost:4000/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.message || "Something went wrong");
+      }
+      
+      console.log("Booking saved:", result);
+      setIsSubmitted(true);
+      reset();
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitError(error instanceof Error ? error.message : "Failed to submit");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -79,6 +99,12 @@ export default function BookingPage() {
             <p className="text-xs md:text-sm text-white/50 max-w-md mx-auto">{t("subtitle")}</p>
           </div>
 
+          {submitError && (
+            <div className="bg-red-500/20 border border-red-500 rounded p-4 mb-6 text-red-300 text-sm text-center">
+              {submitError}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white/5 backdrop-blur border border-white/10 rounded p-6 md:p-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
               <div>
@@ -86,24 +112,20 @@ export default function BookingPage() {
                 <input {...register("fullName")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
                 {errors.fullName && <p className="text-red-400 text-[10px] mt-1">{t(errors.fullName.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.company")}</label>
                 <input {...register("company")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.phone")} *</label>
                 <input {...register("phone")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
                 {errors.phone && <p className="text-red-400 text-[10px] mt-1">{t(errors.phone.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.email")} *</label>
                 <input type="email" {...register("email")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
                 {errors.email && <p className="text-red-400 text-[10px] mt-1">{t(errors.email.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.serviceType")} *</label>
                 <select {...register("serviceType")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none">
@@ -115,7 +137,6 @@ export default function BookingPage() {
                 </select>
                 {errors.serviceType && <p className="text-red-400 text-[10px] mt-1">{t(errors.serviceType.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.passengers")} *</label>
                 <div className="flex items-center gap-3">
@@ -125,25 +146,21 @@ export default function BookingPage() {
                 </div>
                 {errors.passengers && <p className="text-red-400 text-[10px] mt-1">{t(errors.passengers.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.pickup")} *</label>
                 <input {...register("pickup")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
                 {errors.pickup && <p className="text-red-400 text-[10px] mt-1">{t(errors.pickup.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.destination")} *</label>
                 <input {...register("destination")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
                 {errors.destination && <p className="text-red-400 text-[10px] mt-1">{t(errors.destination.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.date")} *</label>
                 <input type="date" {...register("date")} min={today} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
                 {errors.date && <p className="text-red-400 text-[10px] mt-1">{t(errors.date.message as any)}</p>}
               </div>
-
               <div>
                 <label className="block text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{t("form.time")} *</label>
                 <input type="time" {...register("time")} className="w-full bg-white/5 border border-white/20 p-3 text-white/80 text-sm outline-none" />
