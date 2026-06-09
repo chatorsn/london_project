@@ -100,6 +100,7 @@ export default function Footer() {
                 { label: t("cookies"), href: `/${locale}/cookies` },
                 { label: t("terms"), href: `/${locale}/terms` },
                 { label: t("managerLink"), href: `/${locale}/manager` },
+                { label: t("transportTerms"), href: `/${locale}/transport-terms` },
               ].map((l) => (
                 <Link
                   key={l.label}
@@ -203,6 +204,8 @@ export default function Footer() {
                 { label: t("cookies"), href: `/${locale}/cookies` },
                 { label: t("terms"), href: `/${locale}/terms` },
                 { label: t("managerLink"), href: `/${locale}/manager` },
+                { label: t("transportTerms"), href: `/${locale}/transport-terms` },
+                
               ].map((l) => (
                 <Link
                   key={l.label}

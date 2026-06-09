@@ -60,7 +60,8 @@
     "privacy": "Privacy Policy",
     "cookies": "Cookies Policy",
     "terms": "Terms of Use",
-    "managerLink": "Manager"
+    "managerLink": "Manager",
+    "transportTerms": "Transport Terms"
   },
   "booking": {
     "title": "Book a Transfer",
@@ -121,5 +122,88 @@
     "noBookings": "No bookings found",
     "total": "Total",
     "demoNote": "Demo data • Form submissions are not saved to this list"
+  },
+  "whyChooseUs": {
+    "title": "Why clients choose LONDON ROUTE TRANSFERS",
+    "subtitle": "Private and corporate transport solutions",
+    "description": "LONDON ROUTE TRANSFERS works with various client categories — from private customers to companies and organized groups. Our model adapts transport to client needs, ensuring service quality regardless of order scale.",
+    "clients": {
+      "title": "Who we serve",
+      "items": [
+        "Private clients: individual trips, airport transfers, family routes, private events",
+        "Corporate clients: systematic transport for employees, guests, business meetings, events",
+        "Educational institutions: schools, colleges, universities organizing student trips",
+        "Tourist groups: tour operators, travel groups, trip organizers",
+        "Event organizers: weddings, private events, corporate outings"
+      ]
+    },
+    "advantages": {
+      "title": "Why choose us",
+      "items": [
+        "Registered UK company with long-term experience",
+        "Own vehicle fleet with scalability",
+        "Individual and group transport services",
+        "Private, corporate and institutional clients",
+        "Centralized management and control",
+        "Single point of responsibility",
+        "Flexible operational model for different order types"
+      ]
+    }
+  },
+  "transportTerms": {
+    "title": "Transport Terms and Conditions",
+    "back": "← Back to Home",
+    "intro": "These Terms govern the provision of transport services by LONDON ROUTE TRANSFERS.",
+    "sections": [
+      {
+        "title": "1. General Provisions",
+        "content": "By ordering services, the client confirms agreement with these Terms."
+      },
+      {
+        "title": "2. Company Information",
+        "content": "LONDON ROUTE TRANSFERS LTD, Private Limited Company, registered in England and Wales. Company Number: 00000000, VAT: GB 000000000, Address: 10 Example House, London, United Kingdom."
+      },
+      {
+        "title": "3. Services",
+        "content": "Airport transfers, corporate transport, group transport, private journeys and event services."
+      },
+      {
+        "title": "4. Booking and Confirmation",
+        "content": "Client request is not a confirmed booking. Booking is confirmed only after all conditions are agreed upon."
+      },
+      {
+        "title": "5. Cancellation and Changes",
+        "content": "Cancellation or changes must be submitted in advance. Late cancellation may result in full or partial charge."
+      },
+      {
+        "title": "6. No-show",
+        "content": "If client doesn't show up at agreed time and place, the order is considered fulfilled with no refund."
+      },
+      {
+        "title": "7. Baggage",
+        "content": "Client must inform about baggage quantity and type in advance. Company is not liable for loss or damage."
+      },
+      {
+        "title": "8. Passenger Conduct",
+        "content": "Company reserves the right to refuse transport if passenger behavior poses a threat."
+      },
+      {
+        "title": "9. Subcontractors",
+        "content": "Company may engage third parties while remaining responsible to the client."
+      },
+      {
+        "title": "10. Liability",
+        "content": "Company is not liable for indirect losses or delays caused by traffic, weather or third parties."
+      },
+      {
+        "title": "11. Force Majeure",
+        "content": "Company is not liable for non-fulfillment due to circumstances beyond its control."
+      },
+      {
+        "title": "12. Applicable Law",
+        "content": "These Terms are governed by the laws of England and Wales."
+      }
+    ]
   }
+  
 }
